@@ -1,0 +1,40 @@
+// scripts/update-readme.ts
+import fs from "fs";
+import path from "path";
+import { getSafeProposals } from "./dashboard-data";
+
+const readmePath = path.resolve("README.md");
+
+async function main() {
+  try {
+    const proposalsMarkdown = await getSafeProposals();
+
+    const readme = fs.readFileSync(readmePath, "utf-8");
+
+    const updatedReadme = readme.replace(
+      /<!-- PROPOSALS_START -->(.*?)<!-- PROPOSALS_END -->/s,
+      `<!-- PROPOSALS_START -->\n${proposalsMarkdown}\n<!-- PROPOSALS_END -->`
+    );
+
+    fs.writeFileSync(readmePath, updatedReadme);
+    console.log("✅ README updated with latest Safe proposals");
+
+    // Optional: Discord webhook
+    const webhook = process.env.DISCORD_WEBHOOK;
+    if (webhook) {
+      await fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `📢 Safe README updated!`,
+        }),
+      });
+      console.log("📡 Discord notification sent");
+    }
+  } catch (err) {
+    console.error("❌ Failed to update README:", err);
+    process.exit(1);
+  }
+}
+
+main();
