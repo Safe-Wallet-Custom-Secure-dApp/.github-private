@@ -6,7 +6,7 @@ Secure. Automated. Multichain. Built for the next generation of onchain coordina
 
 **Gnosis Vault🔐** is a fully automated Safe{Wallet} orchestration system, integrating GitHub, Discord, and multichain dashboards to manage multisig transactions with secure, programmable workflows.
 
-This project is part of the [`Safe-Wallet-Custom-Secure-dApp`](https://github.com/Safe-Wallet-Custom-Secure-dApp) organization and is tightly coupled with the `.github-private` control repo.
+This project is part of the [`https://github.com/Safe-Wallet-Custom-Secure-dApp/Gnosis_vault-`](https://github.com/Safe-Wallet-Custom-Secure-dApp) organization and is tightly coupled with the `.github-private` control repo.
 
 ---
 
